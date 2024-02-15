@@ -141,7 +141,7 @@ export default function PaintBoard ({ children }) {
     <div className="h-full absolute inset-0 z-0" style={{ background: selectedBackground}}>
       {/* palette */}
       <div
-        className="bg-white-opacity-3 absolute p-4 rounded w-80 z-20 left-4 top-4"
+        className="bg-white-opacity-3 absolute p-4 rounded max-w-full w-80 z-20 left-4 top-4"
       >
         <div className='flex justify-between space-x-4'>
           {tools.map((item) => (

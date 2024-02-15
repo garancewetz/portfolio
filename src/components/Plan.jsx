@@ -5,9 +5,9 @@ export default function Plan ({
     rooms = [], 
     currentRoom = 'home'
   }) {
-  const roomSm = 'bg-dark col-span-1 h-16 w-20 border cursor-pointer relative'
-  const roomLg = 'bg-dark col-span-2 h-16 w-40 border cursor-pointer relative'
-  const roomName = 'absolute left-full top-1/2 -translate-y-1/2 pl-10 before:absolute before:content-[""] before:w-8 before:h-[2px] before:top-1/2 before:bg-white before:left-0'
+  const roomSm = 'bg-dark col-span-1 h-[50px] w-[65px] md:h-[65px] md:w-[80px] border cursor-pointer relative'
+  const roomLg = 'bg-dark col-span-2 h-[50px] w-[130px] md:h-[65px] md:w-[160px] border cursor-pointer relative'
+  const roomName = 'absolute left-full top-1/2 -translate-y-1/2 pl-10 before:absolute before:content-[""] before:w-8 before:h-[2px] before:top-1/2 before:bg-white before:left-0 select-none'
 
   const lightUpCurrentRoom = (curr) => {
     return currentRoom === curr.id && 'bg-yellow'
