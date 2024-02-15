@@ -7,11 +7,10 @@ import HorizontalScroll from "./HorizontalScroll";
 import Marquee from "./Marquee";
 import Navigation from "./Navigation";
 import PaintBoard from "./PaintBoard";
+import Particles from "./Particles";
 import Panel from "./Panel";
-import PinMeetElement from "./PinMeetElements";
 import Plan from "./Plan";
-import TextBackground from "./TextBackground";
-import TextShapes from './TextShapes'
+import SvgBackground from './SvgBackground'
 
 export { 
   BentoBox,
@@ -24,8 +23,7 @@ export {
   Navigation, 
   PaintBoard,
   Panel, 
-  PinMeetElement,
+  Particles,
   Plan,
-  TextBackground,
-  TextShapes
+  SvgBackground
 }

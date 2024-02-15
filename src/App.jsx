@@ -1,15 +1,17 @@
 import { useState, useEffect, useRef } from 'react'
-
-import './App.css'
+import './app.scss'
 import useIsInViewport from './hooks/useIsInViewport'
-import Sarah from './assets/interests/sarah-bernhardt.jpg';
-import Marina from './assets/interests/Marina-Ginesta.webp'
-import Cinema from './assets/interests/cinema.jpg'
-import top from './assets/interests/top.jpg'
-import piano from './assets/interests/piano.jpg'
-import ramen from './assets/interests/ramen.png'
-import eus from './assets/interests/eus.jpg'
-import sapienza from './assets/interests/sapienza.jpg'
+
+import SarahJpg from '/images/interests/sarah-bernhardt.jpg'
+import MarinaWebp from '/images/interests/Marina-Ginesta.webp'
+import CinemaJpg from '/images/interests/cinema.jpg'
+import pianoJpg from '/images/interests/piano.jpg'
+import ramenJpg from '/images/interests/ramen.jpg'
+import eusJpg from '/images/interests/eus.jpg'
+import lanaWebp from '/images/interests/lana-del-rey.webp'
+import angelaJpg from '/images/interests/angela-davis.jpg'
+import choraleJpg from '/images/interests/chorale.jpg'
+import svetlanaJpg from '/images/interests/svetlana.jpg'
 
 import { 
   BentoBox,
@@ -21,9 +23,10 @@ import {
   Marquee, 
   Navigation, 
   Panel, 
+  Particles,
   Plan,
   PaintBoard,
-  TextShapes
+  SvgBackground
 } from './components/'
 
 function App() {
@@ -60,66 +63,62 @@ function App() {
     setCurrentRoomVisible(keyWithValueTrue);
   }, Object.values(roomVisibilityCheckers));
 
-  
+  // mette que des regards
   const slide1 = [
-    
     {
       name: 'Cinéma',
-      src: Cinema,
-      color: 'bg-red'
+      srcJpg: CinemaJpg,
     },
-    {
-      name: 'Lecture',
-      src: sapienza,
-      position: 'bg-top',
-      color: 'bg-green'
-    },
+   
     {
       name: 'Musique',
-      src: 'aqugL6GVYE8',
-      video: true,
-      color: 'bg-purple',
+      srcWebp: lanaWebp,
     },
     {
-      name: 'Sarah Bernhardt',
-      src: Sarah,
-      color: 'bg-blue',
+      name: 'Piano',
+      srcJpg: pianoJpg,
+      color: 'bg-yellow'
+    },
+
+ 
+    {
+      name: "Guerre d'espagne",
+      srcWebp: MarinaWebp,
     },
     {
       name: 'Eus',
-      src: eus,
+      srcJpg: eusJpg,
       color: 'bg-red',
     },
+    
   ]
   const slide2 = [
     {
       name: 'Ramen',
-      src: ramen,
+      srcJpg: ramenJpg,
       color: 'bg-blue',
     },
     {
-      name: 'Piano',
-      src: piano,
-      color: 'bg-yellow'
-    },
-    {
-      name: 'Toupies',
-      src: top,
-      color: 'bg-pink',
+      name: 'Lecture',
+      srcJpg: svetlanaJpg,
     },
    
     {
+      name: 'Sarah Bernhardt',
+      srcJpg: SarahJpg,
+    },
+    {
       name: "Chorale",
-      src: '',
+      srcJpg: choraleJpg,
       color: 'bg-yellow',
     },
- 
     {
-      name: "Guerre d'espagne",
-      src: Marina,
-      color: 'bg-blue',
+      name: 'Luttes sociales',
+      srcJpg: angelaJpg,
+      color: 'bg-pink',
     },
   ]
+
 
   const handleChangePanel = (e) => {
     setIsPanelOpen(e)
@@ -145,54 +144,58 @@ function App() {
         currentRoom={currentRoomVisible}></Plan> 
       </Panel>
       <Navigation handleChange={handleChangePanel}></Navigation>
-
+    <div className='fixed inset-0 h-full w-full z-[20]'> <Particles></Particles></div>
+{/* <Particles></Particles> */}
       {/* home */}
       <HorizontalScroll>
-        <div ref={homeRef} className='h-full'>
+        <div ref={homeRef} className='h-full pointer-events-none'>
           <Home></Home>
         </div>
-        <TextShapes 
+        <SvgBackground 
           colors={['bg-red', 'bg-pink', 'bg-purple']}
-          text="Hello world"
         >
+           <div className='text-sm xl:text-lg w-[15rem] md:w-full md:max-w-md xl:max-w-2xl p-6 md:p-8 rounded md:rounded-lg | glassmorphism dark'>
             Je m'intéresse au design, à l'expérience utilisateur. 
             J'aime l'idée qu'un site soit aussi une expérience d'exploration.
-            <br></br>
-            <br></br>
-            J'aime la musique, le cinéma, la lecture, les puzzles et les casses-têtes.
-        </TextShapes>
+           </div>
+        </SvgBackground>
       </HorizontalScroll>
 
       {/* bento */}
-      <section ref={bentoRef} className='h-auto md:py-8 xl:py-20'>
-        <BentoBox></BentoBox>
+      <section ref={bentoRef} className='z-[30] h-auto my-10 md:py-8 xl:py-20'>
+          <BentoBox></BentoBox>
       </section>
-      {/* pin */}
-      <section ref={carouselRef} className='h-[650px] z-20 relative mt-28'>
+      {/* carousel */}
+      <section ref={carouselRef} className='z-20 h-[425px] relative my-20 md:my-56'>
         <CardCarousel/>
       </section>
       {/* marquee */}
-      <section ref={marqueeRef} className="h-auto min-h-screen flex flex-col justify-center gap-20">
-        <div className='text-white text-3xl text-center pl-10'>Intérêts</div>
+      <section ref={marqueeRef} className="h-auto my-20 md:my-56 flex flex-col justify-center gap-20">
+        <div className='text-white text-xl md:text-3xl text-center pl-10'>Intérêts</div>
         <Marquee duration="20s" direction="right" slides={slide1}></Marquee>
         <Marquee duration="30s" direction="left" slides={slide2}></Marquee>
+        {/* <Marquee duration="25s" direction="left" slides={slide3}></Marquee> */}
+
       </section>
       
       {/* contact */}
       <div ref={contactRef} >
         <HorizontalScroll>
-          <TextShapes 
+          <SvgBackground 
             colors={['bg-yellow', 'bg-pink', 'bg-red']}
             text="Me contacter"
           >
-            Me contacter
-          </TextShapes>
+            <div className='text-sm xl:text-lg w-[15rem] md:w-full md:max-w-md xl:max-w-2xl p-6 md:p-8 rounded md:rounded-lg | glassmorphism dark'>
+              Me contacter
+           </div>
+          </SvgBackground>
           <div
           className="h-full text-white">
             <Giphy></Giphy>
           </div> 
         </HorizontalScroll>
       </div>
+
       {/* footer */}
       <section ref={footerRef} className="h-screen relative">
         <PaintBoard>

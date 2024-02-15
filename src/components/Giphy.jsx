@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Giphy ({ card, color }) {
+  console.log(import.meta.env.GIPHY_API_KEY)
   const apiKey = '2izb5HQthxetaPkByYWsqyPlJmYNSNIW';
   const query = 'computer'
 
-  const [isSmallClipPath, setIsSmallClipPath] = useState(false)
+  const [isSmallClipPath, setIsSmallClipPath] = useState(true)
 
   const [randGifIdx, setRandGifIdx] = useState(0);
   const [giphy, setGiphy] = useState(null);
@@ -33,32 +34,31 @@ export default function Giphy ({ card, color }) {
  }, [giphy, randGifIdx]);
 
   return (
-    <div className="w-full h-full relative grid grid-cols-3">
-      <div className='col-span-1 flex flex-col items-start justify-center pl-10'>
+    <div className="w-full h-full relative flex flex-col md:grid md:grid-cols-3">
+      <div className='col-span-1 flex flex-col items-start justify-center md:pl-10'>
         {/* <div className='text-3xl uppercase glow mb-10'>Me contacter</div> */}
-        <div className='space-y-4 flex flex-col items-start text-lg'>
+        <div className='space-y-4 flex flex-col items-start text-lg p-6 md:p-0'>
           <div>Garance Wetzel</div>
           <a 
-          onMouseEnter={() => setIsSmallClipPath(true)}
-          onMouseLeave={() => setIsSmallClipPath(false)}
+          onMouseEnter={() => setIsSmallClipPath(false)}
+          onMouseLeave={() => setIsSmallClipPath(true)}
           href="https://www.linkedin.com/in/garancewetzel/" 
           target="_blank" 
-          className='border-b-2 hover:border-0'>linkedin</a>
-          <a 
-          onMouseEnter={() => setIsSmallClipPath(true)}
-          onMouseLeave={() => setIsSmallClipPath(false)}
+          className='link'>linkedin</a>
+          {/* <a 
+          onMouseEnter={() => setIsSmallClipPath(false)}
+          onMouseLeave={() => setIsSmallClipPath(true)}
           href="https://www.linkedin.com/in/garancewetzel/" 
           target="_blank" 
-          className='border-b-2 hover:border-0'>Mail</a>
+          className='link'>Mail</a> */}
         </div>
       </div>
       <div 
-        style={{ clipPath:`${isSmallClipPath ? 'inset(5% 5% 5% 0% round 25vw 0vw 0vw 25vw)' : 'inset(20% 10% 20% 10% round 25vw 25vw 25vw 25vw)'}` }}
-      className='transition_8 relative h-full w-full overflow-hidden col-span-2'>
-
+        className={`transition_8 flex-1 relative md:h-full w-full overflow-hidden col-span-2 
+        ${isSmallClipPath ? 'clipPath-pill-sm' : 'clipPath-pill-lg'}`}>
         <img
           src={gif}
-          alt="Random Giphy"
+          alt="Random Giphy computer"
           className="absolute inset-0 h-full w-full object-cover"
           style={{ display: gif ? 'block' : 'none' }}
         />
