@@ -1,0 +1,28 @@
+.marquee {
+  @apply w-[400vw] md:w-[200vw];
+	.marquee-content {
+		display: flex;
+		animation: scrolling var(--duration, 20s) linear infinite;
+	}
+}
+
+
+@keyframes scrolling {
+  0% {
+    transform: translate3d(0vw, 0px, 0px);
+  }
+  100% {
+    transform: translate3d(-200vw, 0px, 0px);
+  }
+}
+
+@media (min-width: 768px) {
+  @keyframes scrolling {
+    0% {
+      transform: translate3d(0vw, 0px, 0px);
+    }
+    100% {
+      transform: translate3d(-100vw, 0px, 0px);
+    }
+  }
+}

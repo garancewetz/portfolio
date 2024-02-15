@@ -1,17 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+@import './assets/style/marquee.scss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+$sm: 640px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
 
-/*
-text-5xl 
-text-xl
-text-lg
-
-lg md sm
-*/
+	// sm	640px	@media (min-width: 640px) { ... }
+	// md	768px	@media (min-width: 768px) { ... }
+	// lg	1024px	@media (min-width: 1024px) { ... }
+	// xl	1280px	@media (min-width: 1280px) { ... }
+	// 2xl	1536px	@media (min-width: 1536px) { ... }
 
 body {
   background: var(--dark);
@@ -24,6 +28,11 @@ body {
 
 body {
   margin: 0;
+	overflow-y: visible;
+	overflow-x: hidden;
+
+	position: relative;
+  height: unset;
 }
 
 html {
@@ -31,19 +40,12 @@ html {
 	height: 100%;
 	-webkit-overflow-scrolling: touch;
 	overflow-scrolling: touch;
-}
-
-body {
-	overflow-y: visible;
-	position: relative;
-  height: unset;
-}
-html, body {
-	overflow-x: hidden;
 	margin: 0;
 }
 
-
+ul {
+	line-height: 1.7;
+}
 ::selection {
   color: var(--dark);
   background: var(--pink);
@@ -54,34 +56,16 @@ html, body {
   border-bottom: 1px solid currentColor;
   cursor: pointer;
   display: inline-block;
-	font-weight: 600;;
-}
-.link:hover {
-  border-bottom: 2px solid transparent;
+	font-weight: 600;
+	&:hover {
+		border-bottom: 1px solid transparent;
+	}
 }
 
 .label {
 	@apply text-sm px-3.5 py-1 rounded-full inline-block ;
-	
 }
 
-.marquee {
-  width: 200vw;
-}
-
-.marquee-content {
-  display: flex;
-  animation: scrolling var(--duration, 20s) linear infinite;
-}
-
-@keyframes scrolling {
-  0% {
-    transform: translate3d(0vw, 0px, 0px);
-  }
-  100% {
-    transform: translate3d(-100vw, 0px, 0px);
-  }
-}
 
 .text-stroke {
   -webkit-text-stroke: 1px white;
@@ -116,8 +100,74 @@ html, body {
   transition: 0.8s ease;
 }
 
+.cursor {
+  will-change: transform;
+  pointer-events: none;
+}
+
+
+
+.glassmorphism {
+	&.white {
+		background: rgba(225, 225, 225, 0.05);
+	}
+	&.dark {
+		background: rgba(11, 11, 14, 0.5);
+	}
+	backdrop-filter: blur( 3px );
+	-webkit-backdrop-filter: blur( 3px );
+}
+
+
+.clipPath-circle-lg {
+	clip-path: circle(45% at 20% 25%);
+	@media (min-width: $lg) {
+		clip-path: circle(45% at 25% 30%);
+	}
+}
+.clipPath-circle-sm {
+	clip-path: circle(20% at 50% 70%);
+	@media (min-width: $lg) {
+		clip-path: circle(20% at 80% 50%)
+	}
+}
+
+.clipPath-pill-sm {
+	clip-path: inset(5% 5% 5% 5% round 50vw 50vw 50vw 50vw);
+	@media (min-width: $md) {
+		clip-path: inset(20% 10% 20% 10% round 25vw 25vw 25vw 25vw);
+	}
+}
+.clipPath-pill-lg {
+	clip-path: inset(5% 0% 5% 5% round 25vw 0vw 0vw 25vw);
+	@media (min-width: $md) {
+		clip-path: inset(5% 5% 5% 0% round 25vw 0vw 0vw 25vw);
+	}
+
+}
+
+.slider {
+	position: absolute;
+}
+.card {
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+	position: relative;
+	.content {
+		z-index: 1;
+		transition: transform 0.3s ease;
+	}
+}
+
+/* Slight parallax effect on hover */
+.card:hover .content {
+  transform: translateZ(12px);
+	
+}
 
 @property --angle {
+
 	syntax: '<angle>'; 
 	initial-value: 0deg;
 	inherits: false
@@ -153,25 +203,18 @@ html, body {
 	100.0% { --angleFX: 360deg; background: conic-gradient( from var(--angleFX) at 50% 50%, var(--red), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red) ); }
 }
 
-:root {
-	--dark: rgb(19, 20, 27);
 
+:root {
+	--dark: rgb(11, 11, 14);
+	//--dark: rgb(19, 20, 27);
   --red: hsl(0, 100%, 80%);
   --yellow: hsl(62, 100%, 80%);
   --green: hsl(122, 100%, 80%);
   --blue: hsl(179, 100%, 80%);
   --purple: hsl(238, 100%, 80%);
   --pink: hsl(302, 100%, 80%);
-}
 
-.cursor {
-  will-change: transform;
-  /* user-select: none; */
-  pointer-events: none;
-}
 
-.slider {
-    position: absolute;
 }
 
 
