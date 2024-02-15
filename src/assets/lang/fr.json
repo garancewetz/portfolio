@@ -1,0 +1,11 @@
+{
+  "helpers": {
+    "video": "Votre navigateur ne prend pas en charge la balise vidéo."
+  },
+  "home": {
+    "name": "Garance Wetzel",
+    "job": "Développeuse front",
+    "visit": "Visiter",
+    "hello": "Hello world"
+  }
+}
