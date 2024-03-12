@@ -60,7 +60,7 @@ export default function SvgBackground ({text, colors = [], children}) {
   });
 
   return (
-    <div 
+    <section 
       ref={context} 
       className='relative w-full h-full overflow-hidden text-white' 
       onMouseMove={(e) => setMousePos(e)}
@@ -86,6 +86,6 @@ export default function SvgBackground ({text, colors = [], children}) {
       <div className="absolute inset-0 h-screen w-screen ">
           <Svg text={text}></Svg>
       </div> */}
-    </div>
+    </section>
   )
 }

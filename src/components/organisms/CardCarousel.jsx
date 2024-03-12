@@ -4,7 +4,7 @@ import { Draggable } from "gsap/Draggable";
 gsap.registerPlugin(Draggable);
 
 
-import Card from '../components/molecules/Card'
+import Card from '../molecules/Card'
 
 import colorzWebp from '/images/projets/colorz.webp'
 import colorzJpg from '/images/projets/colorz.jpg'
@@ -123,12 +123,12 @@ export default function Slider () {
 
  
   return (
-    <div id="slider" className="slider flex" ref={sliderRef}>
+    <ul id="slider" className="slider flex" ref={sliderRef}>
       {slides.map((item, index) => (
-        <div key={index}>
+        <li key={index}>
           <Card item={item}></Card>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };

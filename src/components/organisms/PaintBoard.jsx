@@ -24,6 +24,7 @@ export default function PaintBoard ({ children }) {
   ];
 
   const colors = [
+    { name: 'transparent', value: 'var(--dark)', code: 'rgba(19, 20, 27, 0)' },
     { name: 'dark', value: 'var(--dark)', code: 'rgb(19, 20, 27)' },
     { name: 'red', value: 'var(--red)', code: 'hsl(0, 100%, 80%)' },
     { name: 'yellow', value: 'var(--yellow)', code: 'hsl(62, 100%, 80%)' },
@@ -51,7 +52,7 @@ export default function PaintBoard ({ children }) {
         changeBackground();
       } else if (selectedTool === 'eraser') {
         erase();
-        setSelectedBackground(colors.find(el => el.name === 'dark').code)
+        setSelectedBackground(colors.find(el => el.name === 'transparent').code)
       } else if (selectedTool === 'pencil' || selectedTool === 'brush') {
         onPointerMove({
           clientX: lastMousePos.x + 1,
@@ -143,9 +144,9 @@ export default function PaintBoard ({ children }) {
       <div
         className="bg-white-opacity-3 absolute p-4 rounded max-w-full w-80 z-20 left-4 top-4"
       >
-        <div className='flex justify-between space-x-4'>
+        <ul className='flex justify-between space-x-4'>
           {tools.map((item) => (
-              <div
+              <li
                 key={item.name}
                 className={`cursor-pointer flex-1 p-2 text-xl rounded-full flex justify-center items-center bg-dark-opacity-9`}
                 style={{
@@ -154,23 +155,26 @@ export default function PaintBoard ({ children }) {
                 onClick={() => changeTools(item.name)}
               >
                 {item.emoji}
-              </div>
+              </li>
           ))}
-        </div>
-        <div className="mt-3 w-full flex justify-between">
+        </ul>
+        <ul className="mt-3 w-full flex justify-between">
           {colors.map((color) => (
-            <div
+            color.name !== 'transparent' &&
+            (
+              <li
               key={color.name}
-              className="w-8 h-8 rounded-full"
+              className="w-8 h-8 rounded-full cursor-pointer"
               style={{
                 background: color.value,
                 outline: color.code === selectedColor ? '2px solid white' : '2px solid transparent',
                 outlineOffset: '2px'
               }}
               onClick={() => changeColor(color)}
-            ></div>
+            ></li>
+            )
           ))}
-        </div>
+        </ul>
       </div>
       {/* canvas */}
       <canvas

@@ -27,13 +27,14 @@ export default function HorizontalScroll({children}) {
     );
   }, { scope: horizontalWrapper });
 
+  
   return (
     <div 
       ref={horizontalWrapper} 
       className="relative h-screen w-[200vw]">
       <section className='flex'>
         {Children.map(children, child =>
-          <div className="panel h-screen w-1/2">
+          <div className="panel h-screen flex-1 w-full">
             {child}
           </div>
         )}
