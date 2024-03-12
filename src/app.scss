@@ -56,14 +56,15 @@ ul {
   border-bottom: 1px solid currentColor;
   cursor: pointer;
   display: inline-block;
-	font-weight: 600;
+	font-weight: 500;
 	&:hover {
 		border-bottom: 1px solid transparent;
+
 	}
 }
 
 .label {
-	@apply text-sm px-3.5 py-1 rounded-full inline-block ;
+	@apply px-3.5 py-1 rounded-full inline-block ;
 }
 
 
@@ -90,7 +91,7 @@ ul {
 }
 
 .glow {
-  text-shadow: var(--color, white) 0px 0 3px;
+  text-shadow: var(--color, white) 0px 0 2px;
 }
 
 .transition_6 {
@@ -114,8 +115,8 @@ ul {
 	&.dark {
 		background: rgba(11, 11, 14, 0.5);
 	}
-	backdrop-filter: blur( 3px );
-	-webkit-backdrop-filter: blur( 3px );
+	backdrop-filter: blur( 2px );
+	-webkit-backdrop-filter: blur( 2px );
 }
 
 
@@ -162,7 +163,7 @@ ul {
 
 /* Slight parallax effect on hover */
 .card:hover .content {
-  transform: translateZ(12px);
+  transform: translateZ(3px);
 	
 }
 
@@ -206,7 +207,7 @@ ul {
 
 :root {
 	--dark: rgb(11, 11, 14);
-	//--dark: rgb(19, 20, 27);
+	//--dark: rgb(17, 17, 22);
   --red: hsl(0, 100%, 80%);
   --yellow: hsl(62, 100%, 80%);
   --green: hsl(122, 100%, 80%);

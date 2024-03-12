@@ -30,6 +30,9 @@ export default {
         'montserrat': ['Montserrat'],
         'oleo': ['Oleo Script'],
         'artial': ['Arial']
+      },
+      transitionProperty: {
+        'max-height': 'max-height'
       }
     },
   },
