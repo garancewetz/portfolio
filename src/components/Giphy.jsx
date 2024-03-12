@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Giphy ({ card, color }) {
-  console.log(import.meta.env.GIPHY_API_KEY)
   const apiKey = '2izb5HQthxetaPkByYWsqyPlJmYNSNIW';
   const query = 'computer'
 
@@ -36,21 +35,14 @@ export default function Giphy ({ card, color }) {
   return (
     <div className="w-full h-full relative flex flex-col md:grid md:grid-cols-3">
       <div className='col-span-1 flex flex-col items-start justify-center md:pl-10'>
-        {/* <div className='text-3xl uppercase glow mb-10'>Me contacter</div> */}
+        <div className='text-3xl glow mb-10'>Me contacter</div>
         <div className='space-y-4 flex flex-col items-start text-lg p-6 md:p-0'>
-          <div>Garance Wetzel</div>
           <a 
           onMouseEnter={() => setIsSmallClipPath(false)}
           onMouseLeave={() => setIsSmallClipPath(true)}
           href="https://www.linkedin.com/in/garancewetzel/" 
           target="_blank" 
-          className='link'>linkedin</a>
-          {/* <a 
-          onMouseEnter={() => setIsSmallClipPath(false)}
-          onMouseLeave={() => setIsSmallClipPath(true)}
-          href="https://www.linkedin.com/in/garancewetzel/" 
-          target="_blank" 
-          className='link'>Mail</a> */}
+          className='link pointer-events-auto'>linkedin</a>
         </div>
       </div>
       <div 
