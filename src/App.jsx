@@ -14,20 +14,14 @@ import choraleJpg from '/images/interests/chorale.jpg'
 import svetlanaJpg from '/images/interests/svetlana.jpg'
 
 import { 
-  BentoBox,
-  CardCarousel,
   Giphy,
   Home, 
-  HorizontalScroll, 
-  Footer, 
-  Marquee, 
-  Navigation, 
-  Panel, 
-  Particles,
   Plan,
-  PaintBoard,
-  SvgBackground
 } from './components/'
+
+import { BentoBox, CardMosaic, Marquee, PaintBoard } from './components/organisms'
+import { HorizontalScroll, Footer, Navigation, Panel } from './components/layouts'
+
 
 function App() {
   const [isPanelOpen, setIsPanelOpen] = useState(false)
@@ -42,7 +36,7 @@ function App() {
 
   const rooms = [
     { id: 'home', name: 'Accueil', ref: homeRef }, 
-    { id: 'bento', name: 'CV', ref: bentoRef },
+    { id: 'bento', name: 'CV', ref: bentoRef }, 
     { id: 'carousel', name: 'Projets', ref: carouselRef },
     { id: 'marquee', name: 'Intérêts', ref: marqueeRef },
     { id: 'contact', name: 'Contact', ref: contactRef },
@@ -56,6 +50,7 @@ function App() {
     [rooms[3].id]: useIsInViewport(rooms[3].ref),
     [rooms[4].id]: useIsInViewport(rooms[4].ref),
     [rooms[5].id]: useIsInViewport(rooms[5].ref),
+
   };
   
   useEffect(() => {
@@ -63,7 +58,6 @@ function App() {
     setCurrentRoomVisible(keyWithValueTrue);
   }, Object.values(roomVisibilityCheckers));
 
-  // mette que des regards
   const slide1 = [
     {
       name: 'Cinéma',
@@ -79,8 +73,6 @@ function App() {
       srcJpg: pianoJpg,
       color: 'bg-yellow'
     },
-
- 
     {
       name: "Guerre d'espagne",
       srcWebp: MarinaWebp,
@@ -119,7 +111,6 @@ function App() {
     },
   ]
 
-
   const handleChangePanel = (e) => {
     setIsPanelOpen(e)
   }
@@ -132,72 +123,69 @@ function App() {
   return (
     <>
       {/* panel */}
-      <Panel 
-        isPanelOpen={isPanelOpen}
-        handleChange={handleChangePanel}
-        rooms={rooms}
-        currentRoom={currentRoomVisible}
-      >
-        <Plan 
-        rooms={rooms}
-        goToRoom={goToRoom}
-        currentRoom={currentRoomVisible}></Plan> 
-      </Panel>
-      <Navigation handleChange={handleChangePanel}></Navigation>
-    <div className='fixed inset-0 h-full w-full z-[20]'> <Particles></Particles></div>
-{/* <Particles></Particles> */}
-      {/* home */}
-      <HorizontalScroll>
-        <div ref={homeRef} className='h-full pointer-events-none'>
-          <Home></Home>
-        </div>
-        <SvgBackground 
-          colors={['bg-red', 'bg-pink', 'bg-purple']}
+      <header>
+        <Navigation handleChange={handleChangePanel}></Navigation>
+        <Panel 
+          isPanelOpen={isPanelOpen}
+          handleChange={handleChangePanel}
+          rooms={rooms}
+          currentRoom={currentRoomVisible}
         >
-           <div className='text-sm xl:text-lg w-[15rem] md:w-full md:max-w-md xl:max-w-2xl p-6 md:p-8 rounded md:rounded-lg | glassmorphism dark'>
-            Je m'intéresse au design, à l'expérience utilisateur. 
-            J'aime l'idée qu'un site soit aussi une expérience d'exploration.
-           </div>
-        </SvgBackground>
-      </HorizontalScroll>
-
-      {/* bento */}
-      <section ref={bentoRef} className='z-[30] h-auto my-10 md:py-8 xl:py-20'>
-          <BentoBox></BentoBox>
-      </section>
-      {/* carousel */}
-      <section ref={carouselRef} className='z-20 h-[425px] relative my-20 md:my-56'>
-        <CardCarousel/>
-      </section>
-      {/* marquee */}
-      <section ref={marqueeRef} className="h-auto my-20 md:my-56 flex flex-col justify-center gap-20">
-        <div className='text-white text-xl md:text-3xl text-center pl-10'>Intérêts</div>
-        <Marquee duration="20s" direction="right" slides={slide1}></Marquee>
-        <Marquee duration="30s" direction="left" slides={slide2}></Marquee>
-        {/* <Marquee duration="25s" direction="left" slides={slide3}></Marquee> */}
-
-      </section>
-      
-      {/* contact */}
-      <div ref={contactRef} >
+          <Plan 
+            isPanelOpen={isPanelOpen}
+            rooms={rooms}
+            goToRoom={goToRoom}
+            currentRoom={currentRoomVisible}></Plan> 
+        </Panel>
+      </header>
+      <main>
+        {/* home */}
         <HorizontalScroll>
-          <SvgBackground 
-            colors={['bg-yellow', 'bg-pink', 'bg-red']}
-            text="Me contacter"
-          >
-            <div className='text-sm xl:text-lg w-[15rem] md:w-full md:max-w-md xl:max-w-2xl p-6 md:p-8 rounded md:rounded-lg | glassmorphism dark'>
-              Me contacter
-           </div>
-          </SvgBackground>
-          <div
-          className="h-full text-white">
-            <Giphy></Giphy>
-          </div> 
+          <section ref={homeRef} className='h-full w-full'>
+            <Home rooms={rooms}
+            currentRoomVisible={currentRoomVisible}
+            handleChange={handleChangePanel}>
+            </Home>
+          </section>
         </HorizontalScroll>
-      </div>
+          <section ref={bentoRef} className='z-[30] h-auto my-10 md:pt-6'>
+            <BentoBox></BentoBox>
+          </section>
 
+
+        {/* mosaic */}
+        <section 
+          ref={carouselRef} 
+          className='z-20 h-auto relative my-20 md:my-56'>
+            <h3 className={`text-3xl text-white text-center mb-52`}>Projets</h3>
+          <CardMosaic/>
+        </section>
+        {/* marquee */}
+        <section 
+          ref={marqueeRef} 
+          className="h-auto my-20 md:my-56 flex flex-col justify-center gap-40">
+          <h3 className='text-white text-xl md:text-3xl text-center pl-10 glow'>Intérêts</h3>
+          <Marquee duration="35s" direction="right" slides={slide1}></Marquee>
+          <Marquee duration="45s" direction="left" slides={slide2}></Marquee>
+        </section>
+        
+        {/* contact */}
+        <section ref={contactRef} >
+          <HorizontalScroll>
+          <section className='text-white flex justify-center text-4xl items-center h-full'>
+            ➜
+          </section>
+            <div
+            className="h-full text-white">
+              <Giphy></Giphy>
+            </div> 
+          </HorizontalScroll>
+        </section>
+
+
+      </main>
       {/* footer */}
-      <section ref={footerRef} className="h-screen relative">
+      <footer ref={footerRef} className="h-screen relative">
         <PaintBoard>
         </PaintBoard>
         <Footer>
@@ -206,7 +194,7 @@ function App() {
             goToRoom={goToRoom}
             currentRoom={currentRoomVisible}></Plan>
         </Footer>
-      </section>
+      </footer>
     </>
   )
 }
