@@ -113,7 +113,7 @@ export default function Slider () {
 
  
   return (
-      <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 mx-20">
+      <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 mx-2 md:mx-20">
         {slides.map((item, index) => (
           <li key={index}>
             <Card item={item}></Card>

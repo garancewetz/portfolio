@@ -157,7 +157,7 @@ function App() {
         <section 
           ref={carouselRef} 
           className='z-20 h-auto relative my-20 md:my-56'>
-            <h3 className={`text-3xl text-white text-center mb-52`}>Projets</h3>
+            <h3 className={`text-3xl text-white text-center mb-20 md:mb-52`}>Projets</h3>
           <CardMosaic/>
         </section>
         {/* marquee */}

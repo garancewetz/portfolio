@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-import { Particles, ParticlesMove } from './organisms'
+import { Particles } from './organisms'
 
 export default function Home({handleChange}) {
   const [isSmallClipPath, setIsSmallClipPath] = useState(false)
@@ -55,9 +55,6 @@ export default function Home({handleChange}) {
       <div className='fixed w-full inset-0 z-10'>
           <Particles></Particles>
         </div>
-        {/* <div className='absolute w-full inset-0 z-20'>
-          <ParticlesMove></ParticlesMove>
-        </div> */}
     
       <div className="text-white p-6 md:pt-8 md:px-8 w-1/2 relative pointer-events-none">
         <div className='z-10 relative'>
@@ -93,7 +90,7 @@ export default function Home({handleChange}) {
           <Particles></Particles>
         </div> */}
         
-        <span className='rotate-90 block text-6xl'>➜</span>
+        <span className='rotate-90 block text-md md:text-6xl'>➜</span>
 
       </div>
   
